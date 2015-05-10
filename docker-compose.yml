@@ -1,0 +1,23 @@
+dbdata:
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+  command: true
+
+db:
+  image: postgres:latest
+  volumes_from:
+    - dbdata
+  ports:
+    - "5432"
+
+web:
+    build: .
+    working_dir: /app
+    command: ruby app.rb
+    volumes:
+        - .:/app
+    links:
+        - db
+    ports:
+        - "4567:4567"
