@@ -10,7 +10,8 @@ module ExchangeRate
     end
 
     def ExchangeRate.add(time, currency, rate)
-        Database.connection[:rates].insert(:date => time, :currency => currency, :rate => rate)
+        Database.connection[:rates].insert(:date => time, :currency => currency,
+         :rate => rate)
     end
 
     # Return a list of dates for which we have rates

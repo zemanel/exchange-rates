@@ -1,20 +1,50 @@
-<form action="" method="get">
-    <input type="text" placeholder="date" name="date"/>
-    <input type="text" placeholder="amount" name="amount"/>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <h1>Currency converter</h1>
+        </div>
 
-    <label for="from_currency">From: </label>
-    <select name="from_currency">
-        <% for item in currencies %>
-        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
-        <% end %>
-    </select>
+        <form action="" method="get">
+            <div class="row">
+                <div class="col-md-1"><label for="id_date">Date: </label></div>
+                <div class="col-md-3">
+                    <input type="text" placeholder="date" name="date" id="date" />
+                </div>
+            </div>
 
-    <label for="to_currency">To: </label>
-    <select name="to_currency">
-        <% for item in currencies %>
-        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
-        <% end %>
-    </select>
+            <div class="row">
+                <div class="col-md-1"><label for="id_amount">Amount: </label></div>
+                <div class="col-md-3">
+                    <input type="text" placeholder="amount" name="amount" id="amount" />
+                </div>
 
-    <input type="submit" value="Convert">
-</form>
+                <div class="col-md-1"><label for="from_currency">From:</label></div>
+                <div class="col-md-3">
+                    <select name="from_currency" id="from_currency">
+                        <% for item in currencies %>
+                        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+                        <% end %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1 col-md-offset-4">
+                    <label for="to_currency">To: </label>
+                </div>
+                <div class="col-md-3">
+                    <select name="to_currency" id="to_currency">
+                        <% for item in currencies %>
+                        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+                        <% end %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <button class="btn btn-default" type="submit">Convert</button>
+            </div>
+
+        </form>
+    </div>
+</div>
