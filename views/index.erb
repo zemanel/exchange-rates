@@ -1,0 +1,20 @@
+<form action="" method="get">
+    <input type="text" placeholder="date" name="date"/>
+    <input type="text" placeholder="amount" name="amount"/>
+
+    <label for="from_currency">From: </label>
+    <select name="from_currency">
+        <% for item in currencies %>
+        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+        <% end %>
+    </select>
+
+    <label for="to_currency">To: </label>
+    <select name="to_currency">
+        <% for item in currencies %>
+        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+        <% end %>
+    </select>
+
+    <input type="submit" value="Convert">
+</form>

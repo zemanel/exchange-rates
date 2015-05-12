@@ -15,6 +15,7 @@ RSpec.describe ExchangeRate do
   end
 
   it "returns a list of available dates" do
+    puts ExchangeRate.available_dates
     expect(ExchangeRate.available_dates.count).to be >= 1
   end
 

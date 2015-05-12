@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 require 'sequel'
+require 'logger'
 
 module Database
 
@@ -12,7 +13,7 @@ module Database
             $stderr.puts "DATABASE_URL not set"
         end
         if @connection.nil?
-            @connection = Sequel.connect(database_url)
+            @connection = Sequel.connect(database_url, :loggers => [Logger.new($stdout)])
         end
         return @connection
     end
