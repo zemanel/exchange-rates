@@ -7,3 +7,7 @@ irb:
 
 psql:
 	fig run web psql -h db -p 5432 -U postgres postgres
+
+index:
+	# Imports current rates
+	fig run web rake index
