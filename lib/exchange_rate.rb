@@ -13,4 +13,14 @@ module ExchangeRate
         Database.connection[:rates].insert(:date => time, :currency => currency, :rate => rate)
     end
 
+    # Return a list of dates for which we have rates
+    def ExchangeRate.available_dates
+        Database.connection[:rates].distinct.select(:date).reverse_order(:date)
+    end
+
+    # Return a list of currencies for which we have rates
+    def ExchangeRate.available_currencies
+        Database.connection[:rates].distinct.select(:currency).order(:currency)
+    end
+
 end
