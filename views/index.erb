@@ -8,21 +8,21 @@
             <div class="row">
                 <div class="col-md-1"><label for="id_date">Date: </label></div>
                 <div class="col-md-3">
-                    <input type="text" placeholder="date" name="date" id="date" />
+                    <input type="text" placeholder="d-m-y" name="date" id="date" <% if @date %>value="<%= @date %>"<% end %> />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-1"><label for="id_amount">Amount: </label></div>
                 <div class="col-md-3">
-                    <input type="text" placeholder="amount" name="amount" id="amount" />
+                    <input type="text" placeholder="amount" name="amount" id="amount" <%if @amount %>value="<%= @amount %>"<%end%> />
                 </div>
 
                 <div class="col-md-1"><label for="from_currency">From:</label></div>
                 <div class="col-md-3">
                     <select name="from_currency" id="from_currency">
-                        <% for item in currencies %>
-                        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+                        <% for item in @currencies %>
+                        <option value="<%= item[:currency] %>" <% if item[:currency] == @from_currency %>selected=""<% end %>><%= item[:currency] %></option>
                         <% end %>
                     </select>
                 </div>
@@ -34,13 +34,22 @@
                 </div>
                 <div class="col-md-3">
                     <select name="to_currency" id="to_currency">
-                        <% for item in currencies %>
-                        <option value="<%= item[:currency] %>"><%= item[:currency] %></option>
+                        <% for item in @currencies %>
+                        <option value="<%= item[:currency] %>" <% if item[:currency] == @to_currency %>selected=""<% end %> ><%= item[:currency] %></option>
                         <% end %>
                     </select>
                 </div>
             </div>
+            
+            <!-- results -->
 
+            <% if @has_results %>
+            <div class="row">
+                <div class="col-md-2  col-md-offset-4"><em>Current rate:</em> <%= @converted %></div>
+            </div>
+            <% end %>
+
+            <!-- buttons -->
             <div class="row">
                 <button class="btn btn-default" type="submit">Convert</button>
             </div>

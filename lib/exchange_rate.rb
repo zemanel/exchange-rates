@@ -6,7 +6,11 @@ module ExchangeRate
     require 'exchange_rate/import/xml'
 
     def ExchangeRate.at(time, from_currency, to_currency)
-        #TODO
+        from_rate = Database.connection[:rates].where(:date => time, :currency => from_currency).first
+        to_rate = Database.connection[:rates].where(:date => time, :currency => to_currency).first
+        if from_rate && to_rate    
+            return to_rate[:rate] * ( 1 / from_rate[:rate] )
+        end
     end
 
     def ExchangeRate.add(time, currency, rate)
